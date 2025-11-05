@@ -1,13 +1,14 @@
 import { motion } from "framer-motion";
 import { Rocket, Sparkles } from "lucide-react";
+import Spline from "@splinetool/react-spline";
 
 export default function Hero() {
   return (
     <section className="relative overflow-hidden">
-      {/* Background gradient blobs */}
+      {/* Subtle background glows (non-interactive) */}
       <div aria-hidden className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/40 via-blue-500/30 to-cyan-400/30 blur-3xl" />
-        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-gradient-to-tr from-fuchsia-500/40 via-violet-500/30 to-indigo-400/30 blur-3xl" />
+        <div className="absolute -top-40 -left-40 h-96 w-96 rounded-full bg-gradient-to-br from-indigo-500/30 via-blue-500/20 to-cyan-400/20 blur-3xl" />
+        <div className="absolute -bottom-40 -right-40 h-96 w-96 rounded-full bg-gradient-to-tr from-fuchsia-500/30 via-violet-500/20 to-indigo-400/20 blur-3xl" />
       </div>
 
       <div className="relative mx-auto max-w-7xl px-6 pt-24 pb-16 sm:pt-32 sm:pb-24">
@@ -47,6 +48,21 @@ export default function Hero() {
           </div>
         </motion.div>
 
+        {/* Spline hero animation */}
+        <div className="relative mx-auto mt-12 h-80 w-full max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] ring-1 ring-white/10 sm:h-96 lg:h-[520px]">
+          <Spline
+            scene="https://prod.spline.design/4cHQr84zOGAHOehh/scene.splinecode"
+            style={{ width: "100%", height: "100%" }}
+          />
+          {/* decorative gradient rims that don't block interaction */}
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-slate-950/60 to-transparent" />
+            <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/60 to-transparent" />
+            <div className="absolute -left-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-gradient-to-tr from-purple-500/25 via-blue-500/20 to-orange-400/20 blur-3xl" />
+            <div className="absolute -right-24 top-1/2 h-56 w-56 -translate-y-1/2 rounded-full bg-gradient-to-tr from-cyan-500/25 via-indigo-500/20 to-violet-500/20 blur-3xl" />
+          </div>
+        </div>
+
         {/* Stats */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -65,7 +81,7 @@ export default function Hero() {
               className="rounded-xl border border-white/10 bg-white/5 p-4 text-center text-white/80 backdrop-blur"
             >
               <div className="text-2xl font-semibold text-white">{item.value}</div>
-              <div className="text-xs mt-1 text-white/60">{item.label}</div>
+              <div className="mt-1 text-xs text-white/60">{item.label}</div>
             </div>
           ))}
         </motion.div>
